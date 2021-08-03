@@ -10,10 +10,25 @@
 <h2>COURIER ADD</h2>
 
 <div class="container">
-    <form action="#" method="POST" th:action="@{/api/packages/add}" th:object="${packageModel}">
+    <form action="#" method="POST" th:action="@{/api/couriers/add}" th:object="${courier}">
         <div class="form-group">
-            <label for="descriptionInput">Description</label>
-            <input type="text" th:field="*{package_description}" class="form-control" id="descriptionInput" placeholder="Enter Description">
+            <label for="nameInput">Courier Name</label>
+            <input type="text" th:field="*{courier_name}" class="form-control" id="nameInput" placeholder="Enter Courier Name">
+        </div>
+        <div class="form-group">
+            <label for="typeInput">Courier Type</label>
+            <select th:field="*{courier_type}" id="typeInput" class="form-select" aria-label="Courier Type">
+                <option th:value="MCY">Motorcycle</option>
+                <option th:value="CAR">Car</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="cityInput">Coverage City</label>
+            <select th:field="*{coverage_city}" id="cityInput" class="form-select" aria-label="Coverage City">
+                <option th:each="city : ${coverageCityList}"
+                        th:value="${city.city_id}"
+                        th:text="${city.city_name}"></option>
+            </select>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>

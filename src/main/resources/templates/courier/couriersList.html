@@ -30,13 +30,13 @@
             <td th:text="${courier.courier_id}">ID</td>
             <td th:text="${courier.courier_name}">Name</td>
             <td th:text="${courier.courier_type}">Type</td>
-            <td th:text="${courier.courier_city}">City</td>
+            <td th:text="${courier.coverage_city}">City</td>
             <td>
                 <a>
                     <button type="button" class="btn btn-primary">EDIT</button>
                 </a>
-                <a>
-                    <button type="button" class="btn btn-danger">DELETE</button>
+                <a th:href="'/api/couriers/delete/' + ${courier.courier_id}">
+                    <button type="button" class="btn btn-danger" onClick="return confirm('sure?')">DELETE</button>
                 </a>
             </td>
         </tr>
