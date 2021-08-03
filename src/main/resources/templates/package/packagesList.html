@@ -31,8 +31,8 @@
                 <a>
                     <button type="button" class="btn btn-primary">EDIT</button>
                 </a>
-                <a>
-                    <button type="button" class="btn btn-danger">DELETE</button>
+                <a th:href="'/api/packages/delete/' + ${package.package_id}">
+                    <button type="button" class="btn btn-danger" onClick="return confirm('sure?')">DELETE</button>
                 </a>
             </td>
         </tr>

@@ -5,10 +5,7 @@ import com.example.tugasmagang.repository.PackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,6 +38,12 @@ public class PackageController {
     public String packageAddAPI(@ModelAttribute("packageModel") PackageModel packageModel) {
         repository.save(packageModel);
 
+        return "redirect:/packages";
+    }
+
+    @RequestMapping("api/packages/delete/{package_id}")
+    public String packageDelete(@PathVariable(name = "package_id") String package_id) {
+        repository.deleteById(Integer.parseInt(package_id));
         return "redirect:/packages";
     }
 }

@@ -5,6 +5,7 @@ import com.example.tugasmagang.repository.CoverageCityRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -39,6 +40,12 @@ public class CoverageCityController {
     public String coverageCityAddAPI(@ModelAttribute("coverageCity") CoverageCity coverageCity) {
         repository.save(coverageCity);
 
+        return "redirect:/coverageCities";
+    }
+
+    @RequestMapping("api/coverageCities/delete/{city_id}")
+    public String coverageCityDelete(@PathVariable(name = "city_id") String city_id) {
+        repository.deleteById(Integer.parseInt(city_id));
         return "redirect:/coverageCities";
     }
 }
