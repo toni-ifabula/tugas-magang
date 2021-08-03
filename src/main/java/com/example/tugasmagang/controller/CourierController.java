@@ -40,10 +40,6 @@ public class CourierController {
 
         List<CoverageCity> coverageCityList = coverageCityRepository.findAll();
 
-//        List<String> coverageCityList = coverageCity.stream()
-//                .map(CoverageCity::getCity_name)
-//                .collect(Collectors.toList());
-
         model.addAttribute("coverageCityList", coverageCityList);
 
         return "courier/courierAdd";

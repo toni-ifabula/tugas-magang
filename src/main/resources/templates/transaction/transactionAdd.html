@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Transaction Add</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<h2>TRANSACTION ADD</h2>
+
+<div class="container">
+    <form action="#" method="POST" th:action="@{/api/transactions/add}" th:object="${transaction}">
+        <div class="form-group">
+            <label for="packageInput">Package</label>
+            <select th:field="*{trx_package}" id="packageInput" class="form-select" aria-label="Package">
+                <option th:each="package : ${packagesList}"
+                        th:value="${package.package_id}"
+                        th:text="${package.package_description}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="sourceCityInput">Source City</label>
+            <select th:field="*{trx_city_src}" id="sourceCityInput" class="form-select" aria-label="Source City">
+                <option th:each="city : ${coverageCityList}"
+                        th:value="${city.city_id}"
+                        th:text="${city.city_name}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="destinationCityInput">Destination City</label>
+            <select th:field="*{trx_city_dst}" id="destinationCityInput" class="form-select" aria-label="estination City">
+                <option th:each="city : ${coverageCityList}"
+                        th:value="${city.city_id}"
+                        th:text="${city.city_name}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <a href="/transactions">
+        <button type="button" class="btn btn-danger">CANCEL</button>
+    </a>
+</div>
+
+</body>
+</html>
