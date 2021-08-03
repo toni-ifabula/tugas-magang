@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Coverage City List</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<h2>COVERAGE CITY LIST</h2>
+
+<div class="container">
+    <a href="/coverageCities/add">
+        <button type="button" class="btn btn-primary">ADD</button>
+    </a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">City ID</th>
+            <th scope="col">City Name</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="coverageCity : ${coverageCityList}">
+            <td th:text="${coverageCity.city_id}">City ID</td>
+            <td th:text="${coverageCity.city_name}">City Name</td>
+            <td>
+                <a>
+                    <button type="button" class="btn btn-primary">EDIT</button>
+                </a>
+                <a>
+                    <button type="button" class="btn btn-danger">DELETE</button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
