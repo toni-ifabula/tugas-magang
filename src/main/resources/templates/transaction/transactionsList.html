@@ -30,10 +30,10 @@
         <tr th:each="transaction : ${transactionsList}">
             <td th:text="${transaction.trx_id}">ID</td>
             <td th:text="${transaction.trx_date}">Date</td>
-            <td th:text="${transaction.trx_package}">Package</td>
+            <td th:text="${transaction.packageModel.package_description}">Package</td>
             <td th:text="${transaction.trx_type}">Type</td>
-            <td th:text="${transaction.trx_city_src}">Source</td>
-            <td th:text="${transaction.trx_city_dst}">Destination</td>
+            <td th:text="${transaction.coverageCitySrc.city_name}">Source</td>
+            <td th:text="${transaction.coverageCityDst.city_name}">Destination</td>
         </tr>
         </tbody>
     </table>
