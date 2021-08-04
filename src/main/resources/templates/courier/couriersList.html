@@ -32,7 +32,7 @@
             <td th:text="${courier.courier_type}">Type</td>
             <td th:text="${courier.coverageCity.city_name}">City</td>
             <td>
-                <a>
+                <a th:href="'/couriers/edit/' + ${courier.courier_id}">
                     <button type="button" class="btn btn-primary">EDIT</button>
                 </a>
                 <a th:href="'/api/couriers/delete/' + ${courier.courier_id}">

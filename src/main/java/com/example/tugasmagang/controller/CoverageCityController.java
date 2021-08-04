@@ -39,7 +39,7 @@ public class CoverageCityController {
     }
 
     @RequestMapping(value = "/api/coverageCities/save", method = RequestMethod.POST)
-    public String coverageCityAddAPI(@ModelAttribute("coverageCity") CoverageCity coverageCity) {
+    public String coverageCitySaveAPI(@ModelAttribute("coverageCity") CoverageCity coverageCity) {
         repository.save(coverageCity);
 
         return "redirect:/coverageCities";
@@ -52,7 +52,7 @@ public class CoverageCityController {
     }
 
     @RequestMapping("coverageCities/edit/{city_id}")
-    public ModelAndView packageEdit(@PathVariable(name = "city_id") String city_id) {
+    public ModelAndView coverageCityEdit(@PathVariable(name = "city_id") String city_id) {
         ModelAndView mav = new ModelAndView("coverageCity/coverageCityEdit");
         CoverageCity coverageCity = repository.findById(Integer.parseInt(city_id)).get();
         mav.addObject("coverageCity", coverageCity);

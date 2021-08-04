@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
 import java.util.List;
@@ -39,13 +40,12 @@ public class CourierController {
         model.addAttribute("courier", courier);
 
         List<CoverageCity> coverageCityList = coverageCityRepository.findAll();
-
         model.addAttribute("coverageCityList", coverageCityList);
 
         return "courier/courierAdd";
     }
 
-    @RequestMapping(value = "/api/couriers/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/api/couriers/save", method = RequestMethod.POST)
     public String courierAddAPI(@ModelAttribute("courier") Courier courier) {
         courierRepository.save(courier);
 
@@ -56,5 +56,17 @@ public class CourierController {
     public String courierDelete(@PathVariable(name = "courier_id") String courier_id) {
         courierRepository.deleteById(Integer.parseInt(courier_id));
         return "redirect:/couriers";
+    }
+
+    @RequestMapping("couriers/edit/{courier_id}")
+    public ModelAndView courierEdit(@PathVariable(name = "courier_id") String courier_id) {
+        ModelAndView mav = new ModelAndView("courier/courierEdit");
+        Courier courier = courierRepository.findById(Integer.parseInt(courier_id)).get();
+        mav.addObject("courier", courier);
+
+        List<CoverageCity> coverageCityList = coverageCityRepository.findAll();
+        mav.addObject("coverageCityList", coverageCityList);
+
+        return mav;
     }
 }

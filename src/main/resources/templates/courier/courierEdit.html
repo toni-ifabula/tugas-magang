@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Courier Add</title>
+    <title>Courier Edit</title>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-<h2>COURIER ADD</h2>
+<h2>COURIER EDIT</h2>
 
 <div class="container">
     <form action="#" method="POST" th:action="@{/api/couriers/save}" th:object="${courier}">
+        <div class="form-group">
+            <label for="courierID">Courier Name</label>
+            <input type="text" th:field="*{courier_id}" class="form-control" id="courierID" readonly="readonly">
+        </div>
         <div class="form-group">
             <label for="nameInput">Courier Name</label>
             <input type="text" th:field="*{courier_name}" class="form-control" id="nameInput" placeholder="Enter Courier Name">
