@@ -28,7 +28,7 @@
             <td th:text="${coverageCity.city_id}">City ID</td>
             <td th:text="${coverageCity.city_name}">City Name</td>
             <td>
-                <a>
+                <a th:href="'/coverageCities/edit/' + ${coverageCity.city_id}">
                     <button type="button" class="btn btn-primary">EDIT</button>
                 </a>
                 <a th:href="'/api/coverageCities/delete/' + ${coverageCity.city_id}">

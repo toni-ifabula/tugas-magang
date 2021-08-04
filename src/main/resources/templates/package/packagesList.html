@@ -28,7 +28,7 @@
             <td th:text="${package.package_id}">Package ID</td>
             <td th:text="${package.package_description}">Package Description</td>
             <td>
-                <a>
+                <a th:href="'/packages/edit/' + ${package.package_id}">
                     <button type="button" class="btn btn-primary">EDIT</button>
                 </a>
                 <a th:href="'/api/packages/delete/' + ${package.package_id}">

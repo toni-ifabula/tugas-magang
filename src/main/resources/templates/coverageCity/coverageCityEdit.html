@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Coverage City Add</title>
+    <title>Coverage City Edit</title>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-<h2>COVERAGE CITY ADD</h2>
+<h2>COVERAGE CITY EDIT</h2>
 
 <div class="container">
     <form action="#" method="POST" th:action="@{/api/coverageCities/save}" th:object="${coverageCity}">
+        <div class="form-group">
+            <label for="cityID">City Name</label>
+            <input type="text" th:field="*{city_id}" class="form-control" id="cityID" placeholder="Enter City Name" readonly="readonly">
+        </div>
         <div class="form-group">
             <label for="nameInput">City Name</label>
             <input type="text" th:field="*{city_name}" class="form-control" id="nameInput" placeholder="Enter City Name">

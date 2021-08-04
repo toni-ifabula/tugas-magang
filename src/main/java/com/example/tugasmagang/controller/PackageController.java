@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -34,8 +35,8 @@ public class PackageController {
         return "package/packageAdd";
     }
 
-    @RequestMapping(value = "/api/packages/add", method = RequestMethod.POST)
-    public String packageAddAPI(@ModelAttribute("packageModel") PackageModel packageModel) {
+    @RequestMapping(value = "/api/packages/save", method = RequestMethod.POST)
+    public String packageSaveAPI(@ModelAttribute("packageModel") PackageModel packageModel) {
         repository.save(packageModel);
 
         return "redirect:/packages";
@@ -45,5 +46,14 @@ public class PackageController {
     public String packageDelete(@PathVariable(name = "package_id") String package_id) {
         repository.deleteById(Integer.parseInt(package_id));
         return "redirect:/packages";
+    }
+
+    @RequestMapping("packages/edit/{package_id}")
+    public ModelAndView packageEdit(@PathVariable(name = "package_id") String package_id) {
+        ModelAndView mav = new ModelAndView("package/packageEdit");
+        PackageModel packageModel = repository.findById(Integer.parseInt(package_id)).get();
+        mav.addObject("packageModel", packageModel);
+
+        return mav;
     }
 }
