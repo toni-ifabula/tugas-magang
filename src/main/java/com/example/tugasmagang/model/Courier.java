@@ -9,16 +9,23 @@ public class Courier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int courier_id;
-    private int coverage_city;
     private String courier_name, courier_type;
+
+    @Column(name = "coverage_city")
+    private int coverage_city;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "coverage_city", referencedColumnName = "city_id", insertable = false, updatable = false)
+    private CoverageCity coverageCity;
 
     public Courier() {}
 
-    public Courier(int courier_id, int coverage_city, String courier_name, String courier_type) {
+    public Courier(int courier_id, String courier_name, String courier_type, int coverage_city, CoverageCity coverageCity) {
         this.courier_id = courier_id;
-        this.coverage_city = coverage_city;
         this.courier_name = courier_name;
         this.courier_type = courier_type;
+        this.coverage_city = coverage_city;
+        this.coverageCity = coverageCity;
     }
 
     public int getCourier_id() {
@@ -51,5 +58,13 @@ public class Courier {
 
     public void setCourier_type(String courier_type) {
         this.courier_type = courier_type;
+    }
+
+    public CoverageCity getCoverageCity() {
+        return coverageCity;
+    }
+
+    public void setCoverageCity(CoverageCity coverageCity) {
+        this.coverageCity = coverageCity;
     }
 }
