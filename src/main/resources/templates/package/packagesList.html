@@ -10,6 +10,12 @@
 <h2>PACKAGE LIST</h2>
 
 <div class="container">
+
+    <form method="GET" th:action="@{/packages}">
+        <input type="text" name="keyword" placeholder="Enter Keyword">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
     <a href="/packages/add">
         <button type="button" class="btn btn-primary">ADD</button>
     </a>

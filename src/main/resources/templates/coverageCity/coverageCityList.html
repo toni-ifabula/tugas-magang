@@ -10,6 +10,12 @@
 <h2>COVERAGE CITY LIST</h2>
 
 <div class="container">
+
+    <form method="GET" th:action="@{/coverageCities}">
+        <input type="text" name="keyword" placeholder="Enter Keyword">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
     <a href="/coverageCities/add">
         <button type="button" class="btn btn-primary">ADD</button>
     </a>
