@@ -24,12 +24,11 @@ public class TransactionAssignment {
 
     public TransactionAssignment() {}
 
-    public TransactionAssignment(int assign_id, int trx_id, int courier_id, Date assign_date, Transaction transaction) {
+    public TransactionAssignment(int assign_id, int trx_id, int courier_id, Date assign_date) {
         this.assign_id = assign_id;
         this.trx_id = trx_id;
         this.courier_id = courier_id;
         this.assign_date = assign_date;
-        this.transaction = transaction;
     }
 
     public int getAssign_id() {

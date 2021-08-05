@@ -1,8 +1,6 @@
 package com.example.tugasmagang.repository;
 
 import com.example.tugasmagang.model.Courier;
-import com.example.tugasmagang.model.PackageModel;
-import com.example.tugasmagang.model.modelCustom.CourierCustom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -21,5 +19,15 @@ public interface CourierRepository extends JpaRepository<Courier, Integer> {
     List<Courier> findByKeyword(@Param("keywordName") String keywordName,
                                 @Param("keywordType") String keywordType,
                                 @Param("keywordCity") String keywordCity);
+
+    @Query(value = "SELECT * \n" +
+            "FROM courier\n" +
+            "WHERE courier_type = 'MCY'", nativeQuery = true)
+    List<Courier> getTypeMCY();
+
+    @Query(value = "SELECT * \n" +
+            "FROM courier\n" +
+            "WHERE courier_type = 'CAR'", nativeQuery = true)
+    List<Courier> getTypeCAR();
 
 }

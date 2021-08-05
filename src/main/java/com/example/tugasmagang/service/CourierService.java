@@ -37,4 +37,12 @@ public class CourierService {
     public List<Courier> findByKeyword(String keywordName, String keywordType, String keywordCIty) {
         return repository.findByKeyword(keywordName, keywordType, keywordCIty);
     }
+
+    public List<Courier> getTypeMCY() {
+        return repository.getTypeMCY();
+    }
+
+    public List<Courier> getTypeCAR() {
+        return repository.getTypeCAR();
+    }
 }

@@ -11,6 +11,11 @@
 
 <div class="container">
 
+    <form method="GET" th:action="@{/transactionAssignment}">
+        <input type="text" name="keyword" placeholder="Enter Keyword">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
     <table class="table">
         <thead>
         <tr>
@@ -29,7 +34,7 @@
             <td th:text="${trxAssign.assign_date}">Assign Date</td>
             <td th:text="${trxAssign.courier.courier_name}">Courier</td>
             <td>
-                <a>
+                <a th:if="${trxAssign.courier.courier_name == '-'}" th:href="'/transactionAssignment/edit/' + ${trxAssign.assign_id}">
                     <button type="button" class="btn btn-primary">ASSIGN</button>
                 </a>
             </td>
