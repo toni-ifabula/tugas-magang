@@ -8,12 +8,13 @@ import com.example.tugasmagang.repository.CoverageCityRepository;
 import com.example.tugasmagang.repository.PackageRepository;
 import com.example.tugasmagang.repository.TransactionAssignmentRepository;
 import com.example.tugasmagang.repository.TransactionRepository;
+import com.example.tugasmagang.service.CoverageCityService;
+import com.example.tugasmagang.service.PackageService;
+import com.example.tugasmagang.service.TransactionAssignmentService;
+import com.example.tugasmagang.service.TransactionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.text.ParseException;
@@ -24,22 +25,33 @@ import java.util.List;
 @Controller
 public class TransactionController {
 
-    private TransactionRepository transactionRepository;
-    private PackageRepository packageRepository;
-    private CoverageCityRepository coverageCityRepository;
-    private TransactionAssignmentRepository transactionAssignmentRepository;
+    private TransactionService transactionService;
+    private PackageService packageService;
+    private CoverageCityService coverageCityService;
+    private TransactionAssignmentService transactionAssignmentService;
 
-    public TransactionController(TransactionRepository transactionRepository, PackageRepository packageRepository, CoverageCityRepository coverageCityRepository, TransactionAssignmentRepository transactionAssignmentRepository) {
-        this.transactionRepository = transactionRepository;
-        this.packageRepository = packageRepository;
-        this.coverageCityRepository = coverageCityRepository;
-        this.transactionAssignmentRepository = transactionAssignmentRepository;
+    public TransactionController(TransactionService transactionService, PackageService packageService, CoverageCityService coverageCityService, TransactionAssignmentService transactionAssignmentService) {
+        this.transactionService = transactionService;
+        this.packageService = packageService;
+        this.coverageCityService = coverageCityService;
+        this.transactionAssignmentService = transactionAssignmentService;
     }
 
-    @RequestMapping("/transactions")
-    public String transactionList(Model model) {
-        List<Transaction> transactionsList = transactionRepository.findAll();
-        model.addAttribute("transactionsList", transactionsList);
+    @GetMapping("/transactions")
+    public String transactionList(Model model, String keywordPackage, String keywordType, String keywordCity) {
+        List<PackageModel> packagesList = packageService.findAll();
+        model.addAttribute("packagesList", packagesList);
+
+        List<CoverageCity> coverageCityList = coverageCityService.findAll();
+        model.addAttribute("coverageCityList", coverageCityList);
+
+        if(keywordPackage != null && keywordType != null && keywordCity != null) {
+            List<Transaction> transactionsList = transactionService.findByKeyword(keywordPackage, keywordType, keywordCity);
+            model.addAttribute("transactionsList", transactionsList);
+        } else {
+            List<Transaction> transactionsList = transactionService.findAll();
+            model.addAttribute("transactionsList", transactionsList);
+        }
 
         return "transaction/transactionsList";
     }
@@ -49,10 +61,10 @@ public class TransactionController {
         Transaction transaction = new Transaction();
         model.addAttribute("transaction", transaction);
 
-        List<PackageModel> packagesList = packageRepository.findAll();
+        List<PackageModel> packagesList = packageService.findAll();
         model.addAttribute("packagesList", packagesList);
 
-        List<CoverageCity> coverageCityList = coverageCityRepository.findAll();
+        List<CoverageCity> coverageCityList = coverageCityService.findAll();
         model.addAttribute("coverageCityList", coverageCityList);
 
         return "transaction/transactionAdd";
@@ -70,7 +82,7 @@ public class TransactionController {
             transaction.setTrx_type("AK");
         }
 
-        transactionRepository.save(transaction);
+        transactionService.save(transaction);
 
         TransactionAssignment transactionAssignment = new TransactionAssignment();
         transactionAssignment.setTrx_id(transaction.getTrx_id());
@@ -78,7 +90,7 @@ public class TransactionController {
 //        Date date = new SimpleDateFormat("d").parse(defaultValue);
         transactionAssignment.setAssign_date(null);
 //        transactionAssignment.setCourier_id(null);
-        transactionAssignmentRepository.save(transactionAssignment);
+        transactionAssignmentService.save(transactionAssignment);
 
         return "redirect:/transactions";
     }
