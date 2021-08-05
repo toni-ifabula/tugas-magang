@@ -1,23 +1,30 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="eng"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/main_layout}">
+
 <head>
     <title>Packages Add</title>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
 </head>
 <body>
-<h2>PACKAGE ADD</h2>
+    <div layout:fragment="content">
+        <h2>PACKAGE ADD</h2>
 
-<div class="container">
-    <form action="#" method="POST" th:action="@{/api/packages/save}" th:object="${packageModel}">
-        <div class="form-group">
-            <label for="descriptionInput">Description</label>
-            <input type="text" th:field="*{package_description}" class="form-control" id="descriptionInput" placeholder="Enter Description">
+        <div class="container">
+            <form action="#" method="POST" th:action="@{/api/packages/save}" th:object="${packageModel}">
+                <div class="form-group">
+                    <label for="descriptionInput">Description</label>
+                    <input type="text" th:field="*{package_description}" class="form-control" id="descriptionInput" placeholder="Enter Description">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
+    </div>
 
 </body>
 </html>

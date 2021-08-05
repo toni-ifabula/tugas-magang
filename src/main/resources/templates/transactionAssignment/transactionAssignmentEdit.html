@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="eng"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/main_layout}">
+
 <head>
     <title>Transaction Assignment Edit</title>
     <meta charset="UTF-8">
@@ -7,45 +11,48 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-<h2>TRANSACTION ASSIGNMENT EDIT</h2>
 
-<div class="container">
-    <form action="#" method="POST" th:action="@{/api/transactionAssignment/save}" th:object="${transactionAssignment}">
-        <div class="form-group">
-            <label for="trxID">Trx ID</label>
-            <input type="text" th:field="*{trx_id}" class="form-control" id="trxID" readonly="readonly">
-        </div>
-        <div class="form-group">
-            <label for="trxDate">Trx Date</label>
-            <input type="text" th:value="*{transaction.trx_date}" class="form-control" id="trxDate" readonly="readonly">
-        </div>
-        <div class="form-group">
-            <label for="pack">Package</label>
-            <input type="text" th:value="*{transaction.packageModel.package_description}" class="form-control" id="pack" readonly="readonly">
-        </div>
-        <div class="form-group">
-            <label for="trxType">Trx Type</label>
-            <input type="text" th:value="*{transaction.trx_type}" class="form-control" id="trxType" readonly="readonly">
-        </div>
-        <div class="form-group">
-            <label for="citySrc">Source City</label>
-            <input type="text" th:value="*{transaction.coverageCitySrc.city_name}" class="form-control" id="citySrc" readonly="readonly">
-        </div>
-        <div class="form-group">
-            <label for="cityDst">Destination City</label>
-            <input type="text" th:value="*{transaction.coverageCityDst.city_name}" class="form-control" id="cityDst" readonly="readonly">
-        </div>
-        <div class="form-group">
-            <label for="courierInput">Courier</label>
-            <select th:field="*{courier_id}" id="courierInput" class="form-select" aria-label="Courier">
-                <option th:each="courier : ${couriers}"
-                        th:value="${courier.courier_id}"
-                        th:text="${courier.courier_name}"></option>
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+<div layout:fragment="content">
+    <h2>TRANSACTION ASSIGNMENT EDIT</h2>
 
+    <div class="container">
+        <form action="#" method="POST" th:action="@{/api/transactionAssignment/save}" th:object="${transactionAssignment}">
+            <div class="form-group">
+                <label for="trxID">Trx ID</label>
+                <input type="text" th:field="*{trx_id}" class="form-control" id="trxID" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="trxDate">Trx Date</label>
+                <input type="text" th:value="*{transaction.trx_date}" class="form-control" id="trxDate" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="pack">Package</label>
+                <input type="text" th:value="*{transaction.packageModel.package_description}" class="form-control" id="pack" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="trxType">Trx Type</label>
+                <input type="text" th:value="*{transaction.trx_type}" class="form-control" id="trxType" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="citySrc">Source City</label>
+                <input type="text" th:value="*{transaction.coverageCitySrc.city_name}" class="form-control" id="citySrc" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="cityDst">Destination City</label>
+                <input type="text" th:value="*{transaction.coverageCityDst.city_name}" class="form-control" id="cityDst" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="courierInput">Courier</label>
+                <select th:field="*{courier_id}" id="courierInput" class="form-select" aria-label="Courier">
+                    <option th:each="courier : ${couriers}"
+                            th:value="${courier.courier_id}"
+                            th:text="${courier.courier_name}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
 </div>
 
 </body>

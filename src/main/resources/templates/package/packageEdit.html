@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="eng"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/main_layout}">
+
 <head>
     <title>Packages Edit</title>
     <meta charset="UTF-8">
@@ -9,18 +13,20 @@
 <body>
 <h2>PACKAGE EDIT</h2>
 
-<div class="container">
-    <form action="#" method="POST" th:action="@{/api/packages/save}" th:object="${packageModel}">
-        <div class="form-group">
-            <label for="packageID">Package ID</label>
-            <input type="text" th:field="*{package_id}" class="form-control" id="packageID" readonly="readonly">
-        </div>
-        <div class="form-group">
-            <label for="descriptionInput">Description</label>
-            <input type="text" th:field="*{package_description}" class="form-control" id="descriptionInput" placeholder="Enter Description">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+<div layout:fragment="content">
+    <div class="container">
+        <form action="#" method="POST" th:action="@{/api/packages/save}" th:object="${packageModel}">
+            <div class="form-group">
+                <label for="packageID">Package ID</label>
+                <input type="text" th:field="*{package_id}" class="form-control" id="packageID" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="descriptionInput">Description</label>
+                <input type="text" th:field="*{package_description}" class="form-control" id="descriptionInput" placeholder="Enter Description">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
 </div>
 
 </body>
