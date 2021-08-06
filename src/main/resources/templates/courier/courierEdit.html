@@ -22,19 +22,19 @@
             <div class="form-group row">
                 <label for="courierID" class="col-sm-2 col-form-label">Courier Name : </label>
                 <div class="col-sm-9">
-                    <input type="text" th:field="*{courier_id}" class="form-control" id="courierID" readonly="readonly">
+                    <input type="text" th:field="*{courier_id}" class="form-control" id="courierID" readonly="readonly" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="nameInput" class="col-sm-2 col-form-label">Courier Name : </label>
                 <div class="col-sm-9">
-                    <input type="text" th:field="*{courier_name}" class="form-control" id="nameInput" placeholder="Enter Courier Name">
+                    <input type="text" th:field="*{courier_name}" class="form-control" id="nameInput" placeholder="Enter Courier Name" required>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="typeInput" class="col-sm-2 col-form-label">Courier Type</label>
                 <div class="col-sm-9">
-                    <select th:field="*{courier_type}" id="typeInput" class="form-control" aria-label="Courier Type">
+                    <select th:field="*{courier_type}" id="typeInput" class="form-control" aria-label="Courier Type" required>
                         <option th:value="MCY">Motorcycle</option>
                         <option th:value="CAR">Car</option>
                     </select>
@@ -43,7 +43,7 @@
             <div class="form-group row">
                 <label for="cityInput" class="col-sm-2 col-form-label">Coverage City</label>
                 <div class="col-sm-9">
-                    <select th:field="*{coverage_city}" id="cityInput" class="form-control" aria-label="Coverage City">
+                    <select th:field="*{coverage_city}" id="cityInput" class="form-control" aria-label="Coverage City" required>
                         <option th:each="city : ${coverageCityList}"
                                 th:value="${city.city_id}"
                                 th:text="${city.city_name}"></option>
