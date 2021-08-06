@@ -13,15 +13,22 @@
 <body>
 
 <div layout:fragment="content">
-    <h2>COVERAGE CITY ADD</h2>
 
     <div class="container">
+        <h2 class="d-flex justify-content-center">COVERAGE CITY ADD</h2>
+        <br>
+
         <form action="#" method="POST" th:action="@{/api/coverageCities/save}" th:object="${coverageCity}">
-            <div class="form-group">
-                <label for="nameInput">City Name</label>
-                <input type="text" th:field="*{city_name}" class="form-control" id="nameInput" placeholder="Enter City Name">
+            <div class="form-group row">
+                <label for="nameInput" class="col-sm-2 col-form-label">City Name : </label>
+                <div class="col-sm-9">
+                    <input type="text" th:field="*{city_name}" class="form-control" id="nameInput" placeholder="Enter City Name">
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/coverageCities">
+                <button type="button" class="btn btn-danger">CANCEL</button>
+            </a>
+            <button type="submit" class="btn btn-primary">SUBMIT</button>
         </form>
     </div>
 </div>

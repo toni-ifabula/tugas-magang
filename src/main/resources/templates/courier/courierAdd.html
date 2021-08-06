@@ -13,30 +13,41 @@
 <body>
 
 <div layout:fragment="content">
-    <h2>COURIER ADD</h2>
 
     <div class="container">
+        <h2 class="d-flex justify-content-center">COURIER ADD</h2>
+        <br>
+
         <form action="#" method="POST" th:action="@{/api/couriers/save}" th:object="${courier}">
-            <div class="form-group">
-                <label for="nameInput">Courier Name</label>
-                <input type="text" th:field="*{courier_name}" class="form-control" id="nameInput" placeholder="Enter Courier Name">
+            <div class="form-group row">
+                <label for="nameInput" class="col-sm-2 col-form-label">Courier Name : </label>
+                <div class="col-sm-9">
+                    <input type="text" th:field="*{courier_name}" class="form-control" id="nameInput" placeholder="Enter Courier Name">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="typeInput">Courier Type</label>
-                <select th:field="*{courier_type}" id="typeInput" class="form-select" aria-label="Courier Type">
-                    <option th:value="MCY">Motorcycle</option>
-                    <option th:value="CAR">Car</option>
-                </select>
+            <div class="form-group row">
+                <label for="typeInput" class="col-sm-2 col-form-label">Courier Type : </label>
+                <div class="col-sm-9">
+                    <select th:field="*{courier_type}" id="typeInput" class="form-control" aria-label="Courier Type">
+                        <option th:value="MCY">Motorcycle</option>
+                        <option th:value="CAR">Car</option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="cityInput">Coverage City</label>
-                <select th:field="*{coverage_city}" id="cityInput" class="form-select" aria-label="Coverage City">
-                    <option th:each="city : ${coverageCityList}"
-                            th:value="${city.city_id}"
-                            th:text="${city.city_name}"></option>
-                </select>
+            <div class="form-group row">
+                <label for="cityInput" class="col-sm-2 col-form-label">Coverage City : </label>
+                <div class="col-sm-9">
+                    <select th:field="*{coverage_city}" id="cityInput" class="form-control" aria-label="Coverage City">
+                        <option th:each="city : ${coverageCityList}"
+                                th:value="${city.city_id}"
+                                th:text="${city.city_name}"></option>
+                    </select>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/couriers">
+                <button type="button" class="btn btn-danger">CANCEL</button>
+            </a>
+            <button type="submit" class="btn btn-primary">SUBMIT</button>
         </form>
     </div>
 </div>

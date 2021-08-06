@@ -11,20 +11,31 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
-<h2>PACKAGE EDIT</h2>
 
 <div layout:fragment="content">
+
     <div class="container">
+
+        <h2 class="d-flex justify-content-center">PACKAGE EDIT</h2>
+        <br>
+
         <form action="#" method="POST" th:action="@{/api/packages/save}" th:object="${packageModel}">
-            <div class="form-group">
-                <label for="packageID">Package ID</label>
-                <input type="text" th:field="*{package_id}" class="form-control" id="packageID" readonly="readonly">
+            <div class="form-group row">
+                <label for="packageID" class="col-sm-2 col-form-label">Package ID : </label>
+                <div class="col-sm-9">
+                    <input type="text" th:field="*{package_id}" class="form-control" id="packageID" readonly="readonly">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="descriptionInput">Description</label>
-                <input type="text" th:field="*{package_description}" class="form-control" id="descriptionInput" placeholder="Enter Description">
+            <div class="form-group row">
+                <label for="descriptionInput" class="col-sm-2 col-form-label">Description : </label>
+                <div class="col-sm-9">
+                    <input type="text" th:field="*{package_description}" class="form-control" id="descriptionInput" placeholder="Enter Description">
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/packages">
+                <button type="button" class="btn btn-danger">CANCEL</button>
+            </a>
+            <button type="submit" class="btn btn-primary">SUBMIT</button>
         </form>
     </div>
 </div>

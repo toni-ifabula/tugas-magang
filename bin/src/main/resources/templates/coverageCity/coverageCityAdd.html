@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="eng"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/main_layout}">
+
+<head>
+    <title>Coverage City Add</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+
+<div layout:fragment="content">
+    <h2>COVERAGE CITY ADD</h2>
+
+    <div class="container">
+        <form action="#" method="POST" th:action="@{/api/coverageCities/save}" th:object="${coverageCity}">
+            <div class="form-group">
+                <label for="nameInput">City Name</label>
+                <input type="text" th:field="*{city_name}" class="form-control" id="nameInput" placeholder="Enter City Name">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

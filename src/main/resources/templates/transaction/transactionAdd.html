@@ -13,39 +13,50 @@
 <body>
 
 <div layout:fragment="content">
-    <h2>TRANSACTION ADD</h2>
 
     <div class="container">
+        <h2 class="d-flex justify-content-center">TRANSACTION ADD</h2>
+        <br>
+
         <form action="#" method="POST" th:action="@{/api/transactions/add}" th:object="${transaction}">
-            <div class="form-group">
-                <label for="packageInput">Package</label>
-                <select th:field="*{trx_package}" id="packageInput" class="form-select" aria-label="Package">
-                    <option th:each="package : ${packagesList}"
-                            th:value="${package.package_id}"
-                            th:text="${package.package_description}"></option>
-                </select>
+            <div class="form-group row">
+                <label for="packageInput" class="col-sm-2 col-form-label">Package : </label>
+                <div class="col-sm-9">
+                    <select th:field="*{trx_package}" id="packageInput" class="form-control" aria-label="Package">
+                        <option th:each="package : ${packagesList}"
+                                th:value="${package.package_id}"
+                                th:text="${package.package_description}"></option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="sourceCityInput">Source City</label>
-                <select th:field="*{trx_city_src}" id="sourceCityInput" class="form-select" aria-label="Source City">
-                    <option th:each="city : ${coverageCityList}"
-                            th:value="${city.city_id}"
-                            th:text="${city.city_name}"></option>
-                </select>
+
+            <div class="form-group row">
+                <label for="sourceCityInput" class="col-sm-2 col-form-label">Source City : </label>
+                <div class="col-sm-9">
+                    <select th:field="*{trx_city_src}" id="sourceCityInput" class="form-control" aria-label="Source City">
+                        <option th:each="city : ${coverageCityList}"
+                                th:value="${city.city_id}"
+                                th:text="${city.city_name}"></option>
+                    </select>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="destinationCityInput">Destination City</label>
-                <select th:field="*{trx_city_dst}" id="destinationCityInput" class="form-select" aria-label="estination City">
-                    <option th:each="city : ${coverageCityList}"
-                            th:value="${city.city_id}"
-                            th:text="${city.city_name}"></option>
-                </select>
+            <div class="form-group row">
+                <label for="destinationCityInput" class="col-sm-2 col-form-label">Destination City : </label>
+                <div class="col-sm-9">
+                    <select th:field="*{trx_city_dst}" id="destinationCityInput" class="form-control" aria-label="estination City">
+                        <option th:each="city : ${coverageCityList}"
+                                th:value="${city.city_id}"
+                                th:text="${city.city_name}"></option>
+                    </select>
+                </div>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+
+            <a href="/transactions">
+                <button type="button" class="btn btn-danger">CANCEL</button>
+            </a>
+            <button type="submit" class="btn btn-primary">SUBMIT</button>
         </form>
-        <a href="/transactions">
-            <button type="button" class="btn btn-danger">CANCEL</button>
-        </a>
+
     </div>
 </div>
 

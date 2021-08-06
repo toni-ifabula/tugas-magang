@@ -12,18 +12,25 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <h2>PACKAGE LIST</h2>
 
     <div class="container">
+        <h2 class="d-flex justify-content-center">PACKAGE LIST</h2>
+        <br>
 
         <form method="GET" th:action="@{/packages}">
-            <input type="text" name="keyword" placeholder="Enter Keyword">
-            <button type="submit" class="btn btn-primary">Search</button>
+            <div class="form-group row">
+                <label for="searchInput" class="col-sm-2 col-form-label">Package Description : </label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="searchInput" type="text" name="keyword" placeholder="Enter Keyword">
+                </div>
+                <button type="submit" class="col-sm-1 btn btn-primary">Search</button>
+            </div>
         </form>
 
         <a href="/packages/add">
             <button type="button" class="btn btn-primary">ADD</button>
         </a>
+        <br><br>
 
         <table class="table">
             <thead>

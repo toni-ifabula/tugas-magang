@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="eng"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/main_layout}">
+
+<head>
+    <title>Coverage City List</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+
+<div layout:fragment="content">
+    <h2>COVERAGE CITY LIST</h2>
+
+    <div class="container">
+
+        <form method="GET" th:action="@{/coverageCities}">
+            <input type="text" name="keyword" placeholder="Enter Keyword">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <a href="/coverageCities/add">
+            <button type="button" class="btn btn-primary">ADD</button>
+        </a>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">City ID</th>
+                <th scope="col">City Name</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="coverageCity : ${coverageCityList}">
+                <td th:text="${coverageCity.city_id}">City ID</td>
+                <td th:text="${coverageCity.city_name}">City Name</td>
+                <td>
+                    <a th:href="'/coverageCities/edit/' + ${coverageCity.city_id}">
+                        <button type="button" class="btn btn-primary">EDIT</button>
+                    </a>
+                    <a th:href="'/api/coverageCities/delete/' + ${coverageCity.city_id}">
+                        <button type="button" class="btn btn-danger" onClick="return confirm('sure?')">DELETE</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
